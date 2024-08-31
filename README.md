@@ -1,2 +1,2 @@
-# resume
+# Resume
 Technical Resume
