@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poornesh Raju | Senior Executive Portfolio</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2pdf.js for clean A4 PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* PDF specific layout fixes to handle multi-page overflow */
+        #a4-print-target {
+            display: none;
+            width: 210mm; /* Strict A4 Width */
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+        }
+        
+        .a4-document {
+            display: flex;
+            flex-direction: row;
+            background: #ffffff;
+            min-height: 297mm; /* Standard A4 height minimum */
+            height: auto !important; /* Forces layout to expand across multiple pages */
+            overflow: visible !important;
+        }
+
+        .a4-left-col {
+            width: 65%;
+            padding: 15mm 10mm 15mm 15mm;
+        }
+
+        .a4-right-col {
+            width: 35%;
+            background: #f8fafc;
+            padding: 15mm 15mm 15mm 10mm;
+            border-left: 1px solid #e2e8f0;
+        }
+
+        /* Prevent split-middle text clipping inside cards/jobs */
+        .a4-job, .a4-section, .cert-card, .card, .a4-document-declaration {
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+        }
+
+        /* Helper to manually force a break if a section is too long */
+        .html2pdf__page-break {
+            page-break-before: always !important;
+            break-before: always !important;
+        }
+
+        /* Declaration Styles */
+        .a4-document-declaration {
+            background: #f8fafc;
+            border-top: 2px solid #e2e8f0;
+            padding: 10mm 15mm;
+            font-size: 8.5pt;
+            line-height: 1.5;
+            color: #475569;
+        }
+
+        .a4-dec-text {
+            font-weight: 500;
+            margin-bottom: 6mm;
+            font-style: italic;
+        }
+
+        .a4-dec-signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4mm;
+        }
+
+        .a4-sig-line {
+            border-top: 1px dashed #cbd5e1;
+            width: 45%;
+            padding-top: 1mm;
+            font-size: 8pt;
+            font-weight: 600;
+            color: #1e293b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION SYSTEM -->
+    <aside>
+        <div class="profile-box">
+            <img src="Poornesh.jpg" alt="Poornesh Raju" class="profile-img">
+            <h2>Poornesh Raju</h2>
+            <p>Senior Executive</p>
+            <p>Manufacturing Excellence</p>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active" onclick="switchPage('dashboard')">
+                <i class="fa-solid fa-chart-pie"></i> Overview
+            </li>
+            <li class="nav-item" onclick="switchPage('experience')">
+                <i class="fa-solid fa-briefcase"></i> Experience
+            </li>
+            <li class="nav-item" onclick="switchPage('skills')">
+                <i class="fa-solid fa-gears"></i> Skills & Certs
+            </li>
+        </ul>
+        <button class="download-btn-nav" onclick="generatePDF()">
+            <i class="fa-solid fa-file-pdf"></i> Download A4 PDF
+        </button>
+    </aside>
+
+    <!-- INTERACTIVE VIEWPORT -->
+    <main>
+        <!-- PAGE 1: DASHBOARD OVERVIEW -->
+        <div id="dashboard" class="page-view active">
+            <h1 class="page-title">Executive Overview</h1>
+            <div class="card" style="margin-bottom: 2rem; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white;">
+                <h3 style="margin-bottom: 0.75rem; font-weight: 600; font-size: 1.25rem;">Professional Profile</h3>
+                <p style="line-height: 1.6; opacity: 0.9; font-weight: 300;">
+                    Results-oriented Production Planning and Quality professional with over 8 years of experience in the apparel industry. Expert in lean implementation, process excellence, and seamless production coordination from cut to ship along with sourcing and marketing. Recognized for improving productivity, reducing defects and consistently delivering high-quality output in fast-paced, buyer-driven environments.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3 style="margin-bottom: 1.2rem;"><i class="fa-solid fa-address-book" style="color: var(--accent); margin-right: 0.5rem;"></i> Contact Channels</h3>
+                    <a href="tel:+918880377601" class="contact-link"><i class="fa-solid fa-phone"></i> +91 8880377601</a>
+                    <a href="mailto:poornesh757@hotmail.com" class="contact-link"><i class="fa-solid fa-envelope"></i> poornesh757@hotmail.com</a>
+                    <a href="https://linkedin.com/in/poornesh757" target="_blank" class="contact-link"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/poornesh757</a>
+                    <div class="contact-link"><i class="fa-solid fa-location-dot"></i> Mysore, Karnataka, India</div>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 1.2rem;"><i class="fa-solid fa-graduation-cap" style="color: var(--accent); margin-right: 0.5rem;"></i> Academic Foundation</h3>
+                    <h4 style="font-weight: 600; margin-bottom: 0.25rem;">Bachelor of Computer Applications (BCA)</h4>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">Provides a unique programmatic systems perspective to line automation and statistical reporting environments.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: TIMELINE EXPERIENCE -->
+        <div id="experience" class="page-view">
+            <h1 class="page-title">Professional Experience</h1>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="time-badge">OCT 2025 - PRESENT</span>
+                    <h3 style="font-weight: 700;">Senior Executive - ME</h3>
+                    <h4 style="color: var(--accent); font-weight: 500; margin-bottom: 0.5rem;">CLASSIC FASHION - JORDAN</h4>
+                    <ul>
+                        <li>Lead productivity improvement project across production lines.</li>
+                        <li>Monitor and improve line efficiency, operator utilization and machine productivity.</li>
+                        <li>Identify process improvement opportunities to eliminate waste and non-value-added activities.</li>
+                        <li>Standardize best practices and work methods across factories.</li>
+                        <li>Implement lean manufacturing, Kaizen, 5S and sigma initiatives.</li>
+                        <li>Support factory profitability through efficiency enhancement projects.</li>
+                        <li>Monitor ROI of continuous improvement initiatives.</li>
+                        <li>Train Supervisors and operators on lean and operational excellence tools.</li>
+                        <li>Facilitate Kaizen workshops and improvement projects.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <span class="time-badge">MARCH 2025 - OCT 2025</span>
+                    <h3 style="font-weight: 700;">Senior Executive - Planning</h3>
+                    <h4 style="color: var(--accent); font-weight: 500; margin-bottom: 0.5rem;">ARVIND LIMITED - BANGALORE</h4>
+                    <ul>
+                        <li>Monitor dispatch activities and align production with shipment schedules.</li>
+                        <li>Develop sewing line plans based on capacity and order requirements.</li>
+                        <li>Coordinate dynamically with merchandising, sourcing, and production teams.</li>
+                        <li>Ensure timely availability of raw materials for uninterrupted production flow.</li>
+                        <li>Adjust production plans based on delays and capacity constraints.</li>
+                        <li>Track and report end-to-end production status (Order to Delivery).</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">MARCH 2021 - MARCH 2025</span>
+                    <h3 style="font-weight: 700;">Process - Executive</h3>
+                    <h4 style="color: var(--accent); font-weight: 500; margin-bottom: 0.5rem;">SHAHI EXPORTS PVT. LTD. - MYSORE</h4>
+                    <ul>
+                        <li>Implemented Lean Manufacturing and continuous improvement initiatives.</li>
+                        <li>Conducted internal audits (FPA, QS, GMP, TCAT, Calibration, etc.).</li>
+                        <li>Performed process risk analysis and PDCA cycle implementation.</li>
+                        <li>Led productivity improvement through line balancing and work study.</li>
+                        <li>Executed 5S, 7QC tools, and defect reduction strategies.</li>
+                        <li>Managed global buyers including H&M, Uniqlo, Walmart, VF, PVH, Columbia.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-badge">NOV 2018 - MARCH 2021</span>
+                    <h3 style="font-weight: 700;">QMS Executive</h3>
+                    <h4 style="color: var(--accent); font-weight: 500; margin-bottom: 0.5rem;">GOKALDAS EXPORTS LIMITED - MYSORE</h4>
+                    <ul>
+                        <li>Developed SOPs across departments from cut to ship.</li>
+                        <li>Conducted internal audits and implemented corrective actions.</li>
+                        <li>Performed product rejection and defect analysis.</li>
+                        <li>Prepared training materials based on buyer requirements.</li>
+                        <li>Implemented traffic light system for process control.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 3: SKILLS & CERTIFICATIONS -->
+        <div id="skills" class="page-view">
+            <h1 class="page-title">Skills & Credentials</h1>
+            <h3 style="margin: 1.5rem 0 1rem 0; font-weight: 600;">Language</h3>
+            <div class="chips-container" style="margin-bottom: 2.5rem;">
+                <div class="chip">Kannada</div>
+                <div class="chip">English</div>
+                <div class="chip">Hindi</div>
+            </div>
+            
+            <h3 style="margin: 1.5rem 0 1rem 0; font-weight: 600;">Core Competencies</h3>
+            <div class="chips-container" style="margin-bottom: 2.5rem;">
+                <div class="chip">Production Planning & Control</div>
+                <div class="chip">Quality Management Systems (QMS)</div>
+                <div class="chip">Lean Manufacturing & Continuous Improvement</div>
+                <div class="chip">Process Optimization & Line Balancing</div>
+                <div class="chip">Supply Chain & Inventory Management</div>
+                <div class="chip">Root Cause Analysis & Problem Solving</div>
+                <div class="chip">Statistical Analysis & Reporting</div>
+                <div class="chip">Buyer Handling & Compliance</div>
+                <div class="chip">Power BI, Advanced Excel, VBA</div>
+                <div class="chip">AutoCAD & Adobe Creative Suite</div>
+            </div>
+
+            <h3 style="margin-bottom: 1rem; font-weight: 600;">Certifications & Training</h3>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <i class="fa-solid fa-award"></i>
+                    <div>
+                        <strong style="display:block; font-size:0.95rem;">Lean Six Sigma Black Belt</strong>
+                        <span style="font-size:0.8rem; color:var(--text-light);">IASSC</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <i class="fa-solid fa-award"></i>
+                    <div>
+                        <strong style="display:block; font-size:0.95rem;">ISO 9001:2015 Lead Auditor</strong>
+                        <span style="font-size:0.8rem; color:var(--text-light);">IRCA Certified</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <i class="fa-solid fa-award"></i>
+                    <div>
+                        <strong style="display:block; font-size:0.95rem;">Lean Six Sigma Green Belt</strong>
+                        <span style="font-size:0.8rem; color:var(--text-light);">IASSC</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <div>
+                        <strong style="display:block; font-size:0.95rem;">ISO 14001:2015 Internal Auditor</strong>
+                        <span style="font-size:0.8rem; color:var(--text-light);">Bureau Veritas</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <i class="fa-solid fa-code"></i>
+                    <div>
+                        <strong style="display:block; font-size:0.95rem;">Full Stack Web Development</strong>
+                        <span style="font-size:0.8rem; color:var(--text-light);">Simplilearn</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <i class="fa-solid fa-building-shield"></i>
+                    <div>
+                        <strong style="display:block; font-size:0.95rem;">ZED Consultancy Training</strong>
+                        <span style="font-size:0.8rem; color:var(--text-light);">Quality Council of India</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <i class="fa-solid fa-database"></i>
+                    <div>
+                        <strong style="display:block; font-size:0.95rem;">Data Science</strong>
+                        <span style="font-size:0.8rem; color:var(--text-light);">Microsoft and AWS</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <i class="fa-brands fa-atlassian"></i>
+                    <div>
+                        <strong style="display:block; font-size:0.95rem;">DevOps Engineering (Cloud Engineering)</strong>
+                        <span style="font-size:0.8rem; color:var(--text-light);">Micro Degree</span>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <i class="fa-solid fa-network-wired"></i>
+                    <div>
+                        <strong style="display:block; font-size:0.95rem;">Hardware and Networking</strong>
+                        <span style="font-size:0.8rem; color:var(--text-light);">CSC</span>
+                    </div>
+                </div>
+            </div>
+            <h3 style="margin: 1.5rem 0 1rem 0; font-weight: 600;">Projects</h3>
+            <div class="chips-container" style="margin-bottom: 2.5rem;">
+                <div class="chip">ZED in Apparel and Leather</div>
+                <div class="chip">Digitalization Process along with IoT</div>
+                <div class="chip">KANBAN</div>
+                <div class="chip">Cost of Poor Quality</div>
+                <div class="chip">SEIRYUKA</div>
+                <div class="chip">VSM</div>
+                <div class="chip">5G</div>
+                <div class="chip">TPM (Rapid Maintenance & M/c Speed Up)</div>
+                <div class="chip">SIPOC</div>
+                <div class="chip">Automation & Deskilling</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- HIDDEN A4 EXPORT CANVAS -->
+    <div id="a4-print-target">
+        <div class="a4-document">
+            <div class="a4-left-col">
+                <h1 style="font-size: 24pt; font-weight: 700; margin-bottom: 5mm; letter-spacing: -0.5px;">RESUME</h1>
+                <div class="a4-section">
+                    <div class="card" style="margin-bottom: 6mm; background: #1e293b; color: white; padding: 5mm; border-radius: 4px;">
+                        <h3 style="margin-bottom: 2mm; font-weight: 600; font-size: 11pt;">Professional Profile</h3>
+                        <p style="line-height: 1.5; opacity: 0.9; font-weight: 300; font-size: 8.5pt; margin: 0;">
+                            Results-oriented Production Planning and Quality professional with over 8 years of experience in the apparel industry. Expert in lean implementation, process excellence, and seamless production coordination from cut to ship along with sourcing and marketing. Recognized for improving productivity, reducing defects and consistently delivering high-quality output in fast-paced, buyer-driven environments.
+                        </p>
+                    </div>
+                    <div class="a4-section-title" style="font-size: 12pt; font-weight: 700; border-bottom: 2px solid #1e293b; padding-bottom: 1mm; margin-bottom: 4mm; text-transform: uppercase;">Work Experience</div>
+                    
+                    <div class="a4-job" style="margin-bottom: 5mm;">
+                        <div class="a4-job-header" style="display: flex; justify-content: space-between; font-weight: 700; font-size: 9.5pt;">
+                            <span>Senior Executive - ME</span>
+                            <span>Oct 2025 - Present</span>
+                        </div>
+                        <div class="a4-job-sub" style="display: flex; justify-content: space-between; font-size: 8.5pt; color: #64748b; margin-bottom: 2mm;">
+                            <span>Classic Fashion Co. Limited</span>
+                            <span>Irbid, JORDAN</span>
+                        </div>
+                        <ul class="a4-list" style="font-size: 8pt; padding-left: 4mm; margin: 0; line-height: 1.5;">
+                            <li>Lead productivity improvement project across production lines.</li>
+                            <li>Monitor and improve line efficiency, operator utilization and machine productivity.</li>
+                            <li>Identify process improvement opportunities to eliminate waste and non-value-added activities.</li>
+                            <li>Standardize best practices and work methods across factories.</li>
+                            <li>Implement lean manufacturing, Kaizen, 5S and sigma initiatives.</li>
+                            <li>Support factory profitability through efficiency enhancement projects.</li>
+                            <li>Monitor ROI of continuous improvement initiatives.</li>
+                            <li>Train Supervisors and operators on lean and operational excellence tools.</li>
+                            <li>Facilitate Kaizen workshops and improvement projects.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="a4-job" style="margin-bottom: 5mm;">
+                        <div class="a4-job-header" style="display: flex; justify-content: space-between; font-weight: 700; font-size: 9.5pt;">
+                            <span>Senior Executive - Planning</span>
+                            <span>March 2025 - Oct 2025</span>
+                        </div>
+                        <div class="a4-job-sub" style="display: flex; justify-content: space-between; font-size: 8.5pt; color: #64748b; margin-bottom: 2mm;">
+                            <span>Arvind Limited</span>
+                            <span>Bangalore, IN</span>
+                        </div>
+                        <ul class="a4-list" style="font-size: 8pt; padding-left: 4mm; margin: 0; line-height: 1.5;">
+                            <li>Monitor dispatch activities and align production with shipment schedules.</li>
+                            <li>Develop sewing line plans based on capacity and order requirements.</li>
+                            <li>Coordinate dynamically with merchandising, sourcing, and production teams.</li>
+                            <li>Ensure timely availability of raw materials for uninterrupted production flow.</li>
+                            <li>Adjust production plans based on delays and capacity constraints.</li>
+                            <li>Track and report end-to-end production status (Order to Delivery).</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Added helper break identifier to ensure dynamic multi-page flow layout breaks cleanly -->
+                    <div class="html2pdf__page-break"></div>
+
+                    <div class="a4-job" style="margin-bottom: 5mm; margin-top: 10mm;">
+                        <div class="a4-job-header" style="display: flex; justify-content: space-between; font-weight: 700; font-size: 9.5pt;">
+                            <span>Process - Executive</span>
+                            <span>March 2021 - March 2025</span>
+                        </div>
+                        <div class="a4-job-sub" style="display: flex; justify-content: space-between; font-size: 8.5pt; color: #64748b; margin-bottom: 2mm;">
+                            <span>Shahi Exports Pvt. Ltd. (Unit 45)</span>
+                            <span>Karnataka, IN</span>
+                        </div>
+                        <ul class="a4-list" style="font-size: 8pt; padding-left: 4mm; margin: 0; line-height: 1.5;">
+                            <li>Implemented Lean Manufacturing & continuous improvement initiatives.</li>
+                            <li>Conducted internal audits (FPA, QS, GMP, TCAT, Calibration, etc.).</li>
+                            <li>Performed Process risk analysis and PDCA cycle implementation.</li>
+                            <li>Led productivity improvement through line balancing and work study.</li>
+                            <li>Executed 5S, 7QC tools and defect reduction strategies.</li>
+                            <li>Managed Global Buyers including H&M, Uniqlo, Walmart, VF, PVH, Columbia.</li>
+                        </ul>
+                    </div>
+
+                    <div class="a4-job" style="margin-bottom: 5mm;">
+                        <div class="a4-job-header" style="display: flex; justify-content: space-between; font-weight: 700; font-size: 9.5pt;">
+                            <span>QMS Executive</span>
+                            <span>Nov 2018 - March 2021</span>
+                        </div>
+                        <div class="a4-job-sub" style="display: flex; justify-content: space-between; font-size: 8.5pt; color: #64748b; margin-bottom: 2mm;">
+                            <span>Gokaldas Exports Limited</span>
+                            <span>Karnataka, IN</span>
+                        </div>
+                        <ul class="a4-list" style="font-size: 8pt; padding-left: 4mm; margin: 0; line-height: 1.5;">
+                            <li>Developed cross-department SOPs from cut to ship.</li>
+                            <li>Conducted internal audits and implemented corrective actions.</li>
+                            <li>Performed product rejection and defect analysis.</li>
+                            <li>Prepared training materials based on buyer requirements.</li>
+                            <li>Deployed traffic light system for active process control.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="a4-section-title" style="font-size: 12pt; font-weight: 700; border-bottom: 2px solid #1e293b; padding-bottom: 1mm; margin-bottom: 4mm; text-transform: uppercase;">Academic Foundation</div>
+                <div class="a4-job">
+                    <div class="a4-job-header" style="font-weight: 700; font-size: 9.5pt; margin-bottom: 1mm;">
+                        <span>Bachelor of Computer Applications (BCA)</span>
+                    </div>
+                    <p style="font-size: 8.5pt; line-height: 1.4; color: #475569; margin: 0;">Provides a unique programmatic system perspective to line automation and statistical reporting environments.</p>
+                </div>
+            </div>
+
+            <div class="a4-right-col">
+                <div style="text-align: center; margin-bottom: 6mm;">
+                    <img src="Poornesh.jpg" alt="Poornesh Raju" class="a4-avatar" style="width: 30mm; height: 30mm; border-radius: 50%; object-fit: cover; margin-bottom: 3mm; border: 2px solid #1e293b;">
+                    <div class="a4-name" style="font-size: 16pt; font-weight: 700; color: #1e293b;">Poornesh Raju</div>
+                    <div class="a4-title" style="font-size: 9.5pt; color: #64748b; margin-bottom: 4mm; font-weight: 500;">Senior Executive</div>
+                    
+                    <div style="text-align: left; font-size: 8pt; display: flex; flex-direction: column; gap: 2mm;">
+                        <div class="a4-contact-item"><i class="fa-solid fa-phone" style="width: 4mm; color: #1e293b;"></i> +91 8880377601</div>
+                        <div class="a4-contact-item"><i class="fa-solid fa-envelope" style="width: 4mm; color: #1e293b;"></i> poornesh757@hotmail.com</div>
+                        <div class="a4-contact-item"><i class="fa-brands fa-linkedin" style="width: 4mm; color: #1e293b;"></i> linkedin.com/in/poornesh757</div>
+                        <div class="a4-contact-item"><i class="fa-solid fa-location-dot" style="width: 4mm; color: #1e293b;"></i> Mysore, India</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 6mm;">
+                    <div class="a4-section-title" style="font-size: 9.5pt; font-weight: 700; text-transform: uppercase; border-bottom: 1px solid #cbd5e1; padding-bottom: 1mm; margin-bottom: 3mm;">Core Skills</div>
+                    <div class="a4-chip-stack" style="display: flex; flex-wrap: wrap; gap: 1.5mm;">
+                        <span class="a4-mini-chip" style="background: #e2e8f0; font-size: 7.5pt; padding: 1px 2mm; border-radius: 3px; font-weight: 500;">Production Planning & Control</span>
+                        <span class="a4-mini-chip" style="background: #e2e8f0; font-size: 7.5pt; padding: 1px 2mm; border-radius: 3px; font-weight: 500;">Quality Management Systems (QMS)</span>
+                        <span class="a4-mini-chip" style="background: #e2e8f0; font-size: 7.5pt; padding: 1px 2mm; border-radius: 3px; font-weight: 500;">Lean Manufacturing</span>
+                        <span class="a4-mini-chip" style="background: #e2e8f0; font-size: 7.5pt; padding: 1px 2mm; border-radius: 3px; font-weight: 500;">Process Optimization</span>
+                        <span class="a4-mini-chip" style="background: #e2e8f0; font-size: 7.5pt; padding: 1px 2mm; border-radius: 3px; font-weight: 500;">Supply Chain & Inventory</span>
+                        <span class="a4-mini-chip" style="background: #e2e8f0; font-size: 7.5pt; padding: 1px 2mm; border-radius: 3px; font-weight: 500;">Root Cause Analysis</span>
+                        <span class="a4-mini-chip" style="background: #e2e8f0; font-size: 7.5pt; padding: 1px 2mm; border-radius: 3px; font-weight: 500;">Statistical Analysis</span>
+                        <span class="a4-mini-chip" style="background: #e2e8f0; font-size: 7.5pt; padding: 1px 2mm; border-radius: 3px; font-weight: 500;">Buyer Compliance</span>
+                        <span class="a4-mini-chip" style="background: #e2e8f0; font-size: 7.5pt; padding: 1px 2mm; border-radius: 3px; font-weight: 500;">Power BI, Advanced Excel</span>
+                        <span class="a4-mini-chip" style="background: #e2e8f0; font-size: 7.5pt; padding: 1px 2mm; border-radius: 3px; font-weight: 500;">AutoCAD & Creative Suite</span> 
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 6mm;">
+                    <div class="a4-section-title" style="font-size: 9.5pt; font-weight: 700; text-transform: uppercase; border-bottom: 1px solid #cbd5e1; padding-bottom: 1mm; margin-bottom: 3mm;">Credentials</div>
+                    <div class="a4-list" style="list-style-type:none; padding-left:0; font-size:8pt; display:flex; flex-direction:column; gap:1.5mm;">
+                        <div>• <strong>Lean Six Sigma Black Belt</strong> (IASSC)</div>
+                        <div>• <strong>Lean Six Sigma Green Belt</strong> (IASSC)</div>
+                        <div>• <strong>ISO 9001:2015 Lead Auditor</strong> (IRCA)</div>
+                        <div>• <strong>ISO 14001:2015 Auditor</strong> (BV)</div>
+                        <div>• <strong>Full Stack Web Dev</strong> (Simplilearn)</div>
+                        <div>• <strong>ZED Consultancy Training</strong> (QCI)</div>
+                        <div>• <strong>Data Science</strong> (Microsoft/AWS)</div>
+                        <div>• <strong>DevOps Engineering</strong> (Micro Degree)</div>
+                        <div>• <strong>Hardware & Networking</strong> (CSC)</div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 6mm;">
+                    <div class="a4-section-title" style="font-size: 9.5pt; font-weight: 700; text-transform: uppercase; border-bottom: 1px solid #cbd5e1; padding-bottom: 1mm; margin-bottom: 3mm;">Projects</div>
+                    <div class="a4-list" style="list-style-type:none; padding-left:0; font-size:8pt; display:flex; flex-direction:column; gap:1.5mm;">
+                        <div>• <strong>ZED in Apparel and Leather</strong></div>
+                        <div>• <strong>Digitalization Process & IoT</strong></div>
+                        <div>• <strong>KANBAN Implementations</strong></div>
+                        <div>• <strong>Cost of Poor Quality (COPQ)</strong></div>
+                        <div>• <strong>SEIRYUKA Flow Design</strong></div>
+                        <div>• <strong>Value Stream Mapping (VSM)</strong></div>
+                        <div>• <strong>5G & Line Automation</strong></div>
+                        <div>• <strong>TPM (Rapid Maintenance)</strong></div>
+                        <div>• <strong>SIPOC Process Framework</strong></div>
+                        <div>• <strong>Automation & Deskilling</strong></div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 6mm;">
+                    <div class="a4-section-title" style="font-size: 9.5pt; font-weight: 700; text-transform: uppercase; border-bottom: 1px solid #cbd5e1; padding-bottom: 1mm; margin-bottom: 3mm;">Languages</div>
+                    <div class="a4-list" style="list-style-type:none; padding-left:0; font-size:8pt; display:flex; flex-direction:column; gap:1.5mm;">
+                        <div>• <strong>Kannada</strong> (Native)</div>
+                        <div>• <strong>English</strong> (Professional)</div>
+                        <div>• <strong>Hindi</strong> (Conversational)</div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="a4-section-title" style="font-size: 9.5pt; font-weight: 700; text-transform: uppercase; border-bottom: 1px solid #cbd5e1; padding-bottom: 1mm; margin-bottom: 3mm;">Personal</div>
+                    <div class="a4-list" style="list-style-type:none; padding-left:0; font-size:8pt; display:flex; flex-direction:column; gap:1.5mm;">
+                        <div>• <strong>DOB:</strong> 07/07/1995</div>
+                        <div>• <strong>Gender:</strong> Male</div>
+                        <div>• <strong>Nationality:</strong> Indian</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- DECLARATION AREA IN ACCORDANCE WITH YOUR PREVIOUS DOCUMENT SELECTIONS -->
+        <div class="a4-document-declaration">
+            <div class="a4-dec-text">
+                "I hereby certify that the information provided in this document is true, accurate, and complete. I understand that any false statements, misrepresentations, or omissions of material facts may be grounds for the rejection of this application or the immediate termination of any subsequent agreement."
+            </div>
+            <div class="a4-dec-signatures">
+                <div class="a4-sig-line">Date</div>
+                <div class="a4-sig-line">Signature of Candidate</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT ENGINE CONTROLS -->
+    <script>
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            const activeView = document.getElementById(pageId);
+            if (activeView) activeView.classList.add('active');
+            
+            const activeNavItem = Array.from(document.querySelectorAll('.nav-item')).find(item => item.textContent.toLowerCase().includes(pageId.substring(0,4)));
+            if (activeNavItem) activeNavItem.classList.add('active');
+        }
+
+        function generatePDF() {
+            const element = document.getElementById('a4-print-target');
+            element.style.display = 'block';
+
+            const opt = {
+                margin:       [1, 1, 1, 1], // Adjusted bottom margin slightly for declaration safety
+                filename:     'Poornesh_Raju_Resume.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true, letterRendering: true, scrollY: 0 },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                pagebreak:    { mode: ['avoid-all', 'css', 'legacy'] } 
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                element.style.display = 'none';
+            }).catch(err => {
+                console.error("PDF generation error: ", err);
+                element.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
